@@ -152,5 +152,360 @@ Java SE 8
 
                 Literals
 
+                    is any hard coded value into the program.
 
+                    double r = 5.7; 
+                    
+                    String userName = "Vamsy";
+
+                    double c = 2 * Math.PI * r;
+
+                    double                          keyword
+                    r,String,userName,c,Math,PI     identifier
+                    = ; * .                         operator
+                    5.7,"Vamsy",2                   Literal
+
+                    Java supports the following lieterals
+
+                        Integer
+                                Decimal Numeric System              10  11  90
+                                Hexa Decimal Numeric System         0xA 0xB 0x5A
+                                Octal Numeric System                012 013 0132
+
+                        Float   Decimal Numeric System              3.14
+                        
+                        Character                                   '1'  '@'
+                        
+                        String                                      "Vamsy" "10"
+
+                        Boolean                                     true    false
+                        
+                        Reference                                   NULL
+
+        Data Types
+
+            Primitive Data Type
+                byte
+                short
+                integer
+                long
+                double
+                float
+                char
+                boolean
+                void
+
+            User Defined Data Type
+                enum
+                class
+                interfaces
+                annotations
+
+        Control Statements
+
+            Selective Control Statements
+                if
+                    simple if
+                        if(cond) {
+                            //the statements here are executed only if the given cond evaluates to true.
+                        }
+
+                    if..else
+                        if(cond) {
+                            //the statements here are executed only if the given cond evaluates to true.
+                        } else  {
+                            //the statements here are executed only if the given cond evaluates to false.
+                        }
+
+                    if ladder
+                        if(cond1) {
+                            //the statements here are executed only if the given cond1 evaluates to true.
+                        }else if(cond2) {
+                            //the statements here are executed only if the given cond2 evaluates to true.
+                        }else if(cond3) {
+                            //the statements here are executed only if the given cond3 evaluates to true.
+                        }....... else  {
+                            //the statements here are executed only if all the given conds evaluate to false.
+                        }
+
+                    nested if
+                        if(cond1){
+                            if(cond2){
+                                ....
+                            }
+                        }
+
+                switch
+                    switch(expr){
+                        case pssobileValue1 : 
+                            //statements here are executed when the expr evalautes to possibleValue1
+                            break;
+                        case pssobileValue2 : 
+                            //statements here are executed when the expr evalautes to possibleValue1
+                            break;
+                        case pssobileValue3 : 
+                            //statements here are executed when the expr evalautes to possibleValue3
+                            break;    
+                        default : 
+                            //statements here are executed when the expr values does not match any of the above.
+                    }
+
+            Iterative Control Statements / Loops
+
+                    while
+
+                        while(cond){
+                            //statements here are executed repeadtly as long as the cond is true
+                        }
+
+                    do while
+                        do{
+                            //statements here are executed repeadtly as long as the cond is true
+                        }while(cond);
+
+                    for
+
+                        for(initialization;condition;incrementation/decrimenttion){
+                            //statements here are executed repeadtly as long as the cond is true
+                        }
+
+                    enhanced for / for each
+
+                        for( loopingVar : arrayOrACollection ){
+                            //statements here are executed once for each ele in the givne array or collection
+                        }
+
+            Non Conditional Control Statements
+
+                break
+                continue
+                return
     
+        Object Oriented Programming
+
+            OOP recognizes the significance of data and its representation along wiht the procedure
+            the data has to undergo. OOP is defined as five concepts
+
+                Class and Object
+                Encapsulation
+                Polymorphisim
+                Inheretence
+                Abstraction
+
+            Class and Object
+
+                A class is a User Defined Data Type, that represents data as fields and behaviours as methods. This
+                helps representing domain entities as a unit.
+
+                    class ClassName {
+                        //declare the fields
+                        //declare and define constructors
+                        //declare and define methods
+                    }
+
+                    class Student {
+                        int admNo;          //is a field variable and is initialized to 0
+                        String fullName;    //is an field object  and is initialized to null  
+                        double fee;         //is a field variable and is initized to 0.0
+                        LocalDate admnDate; //is a field object and is initialized to null
+
+                        //declare and define constructors
+                        
+                        void computeTaxOnFee(){
+                            double tax; //is a local variable and is not allocated until first assignment
+                            tax = this.fee * 0.18;
+                            return tax;
+                        }
+                    }
+
+                Objects are variables of class type.
+
+                    ClassName objName;  //declartation
+                    objNaem = new ClassName(); // allocation
+                    
+                    ClassName objNaem = new ClassName(); // initialization
+
+                    Student student1 = new Student();
+                
+                Objects in Java are reference type. This means that each object reference an allocated memory space
+                and a non allocated object holds NULL.
+
+                The fields of a class are by default initialized unlike local variables. the inital values of
+                a byte or short or int or long is 0, double or flaot is 0.0, boolean is false and for any object it is null.
+
+                Constructors
+
+                    is a method of a class that gets invoked automatically immidiately after the object allocation.
+
+                    Every cosntructor in java has to have the same name as that of its class and shall not return anything.
+
+                        Student student = new Student();
+
+                    Constructors are mostly used to custom initialize the fields.
+
+                    Types of Constructors,
+
+                        Default Constructor - NoArg Constructor - Constructor that has no arguments
+                        Paramatrized Constructor    - Constructor that has atleast one argument
+                        Copy Constructor    -   Constructor that has the object of the same class as a argument.
+
+                    A java class - if not defined with any constructor - a default constructor is auto-implemented into it.
+
+            Encapsulation
+
+                is a macahnisim to provide access restrictions to the fields or methods of a class.
+
+                encapuslation allows the developer to control the level of access on a field of a method.
+
+                java provides four access specifiers 
+                    Access Specfier     Keyword         Impact
+                    -----------------------------------------------------------------------------------------------------
+                    Public              public          public fields and methods are accessable anywhere in the application
+                    Private             private         private fields and methods are accessable only with in the owner class
+                    Protected           protected       protected fields and methods are accessable in owner class and in sub-classes     
+                    Default             no-keyword      default fields and methods are accessable in owner class and in classes belonging
+                                                        to the same package as that of the owner class
+
+                java also suggests a coding pattern called gettetrs and setters to be used alongside the access specifiers to
+                achiove encapsulation.
+
+                    A setter is a public function that does not return any value but accepts a vlue into a field. It is
+                    to be named as 'set' followe4d by the field name.
+                    
+                    A getter is a public function that does not accept any value but returns the value of a field. It is
+                    to be named as 'get' followe4d by the field name.
+
+                    class Point2D {
+
+                        private int x;
+                        private int y;
+
+                        public int getX(){
+                            return this.x;
+                        }
+
+                        public void setX(int x){
+                            this.x=x;
+                        }
+
+                        public int getY(){
+                            return this.y;
+                        }
+
+                        public void setY(int y){
+                            this.y=y;
+                        }
+
+                    }
+
+                A combination of access specifiers and getters and setters will allow us to create
+                    a Read Write Field                  a private field with both setter and getter / a public field
+                        or
+                    a Read Only Field                   a private field with only getter, no setter
+                        or
+                    a Write Only Field                  a private field with only setter, no getter
+                        or
+                    a Strictly Non Accessable Field     a private field with no getter and no setter
+
+            Polymorphisim
+
+                is the ability of a language to have more than one method with the same name and in the same scope.
+
+                Overloading
+
+                    is to define more than one method ,in the same class or in a super and sub classes, such that
+                        1. they have the same name
+                        2. but they differ in the arguments count or arguments type.
+
+                        class HumanBeing {
+
+                            Energy eat(Apple apple) {
+                                wash(apple);                            
+                                
+                                Pieces pieces[] = cut(apple);
+                                
+                                Energy energy = new Energy();
+
+                                for(Piece p : prices){
+                                    energy.add(chewAndSwallow(p));
+                                }
+
+                                return energy;
+                            }
+
+                            Energy eat(IceCream iceCream) {
+                                Energy energy = new Energy();
+
+                                while(iceCream.exists()){
+                                    energy.add(lickAndSwallow(iceCream));
+                                }
+
+                                return energy;
+                            }
+                        }
+
+                    A class can have any number of constructors as long as they all have different arguments, and this is
+                    called constructor overloading.
+
+                        class Point2D {
+
+                            private int x;
+                            private int y;
+
+                            //default construcotr - noarg constructor
+                            public Point2D(){
+                                this.x=5;
+                                this.y=5;
+                            }
+
+                            //paramatrized constructor
+                            public Point2D(int x,int y){
+                                this.x=x;
+                                this.y=y;
+                            }
+
+                            //copy constructor
+                            public Point2D(Point p){
+                                this.x=p.x;
+                                this.y=p.y;
+                            }
+
+                           //getters and setters here....
+
+                        }
+
+                Overriding
+
+                   is to define more than one method ,in a super and sub classes, such that
+                        1. they have the same name
+                        2. and they have the same arguments
+                        3. and they have the same return type
+
+                        class Monkey {
+                            Energy eat(Apple apple) {                                
+                                Energy energy = new Energy();
+
+                                while(apple.exists()){
+                                    energy.add(byteAndChewAndSwallow(p));
+                                }
+
+                                return energy;
+                            }
+                        }
+
+                        class HumanBeing extends Monkey {
+                            Energy eat(Apple apple) {
+                                wash(apple);                            
+                                
+                                Pieces pieces[] = cut(apple);
+                                
+                                Energy energy = new Energy();
+
+                                for(Piece p : prices){
+                                    energy.add(chewAndSwallow(p));
+                                }
+
+                                return energy;
+                            }
+                        }
+                    
