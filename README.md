@@ -509,3 +509,113 @@ Java SE 8
                             }
                         }
                     
+            Inheretence
+
+                is to create a new class from an exisitng class. The existing class is called the super class 
+                and the new one is called sub class.
+
+                    class Pen { //super class
+                        private Nib nib;
+                        private Refill refill;
+                        private Barrel barrel;
+
+                        public void write(Paper paper,String text){
+                            
+                        }
+
+                    }
+
+                    class Marker extends Pen { //sub class
+                        public void write(Board board,String text){
+                            
+                        }
+                    }
+
+                Simple Inheretence
+
+                    One Super class extends into one Sub class
+
+                    Point2D (x,y) <---------- Point3D (x,y,z)
+
+                Multi-Level Inheretence
+
+                    One Super class extends into a Sub class, and that Sub Class extends into another Sub Class and so on.
+
+                    Employee (empId,name,sal) <---- Manager (empId,name,sal,hra) <--- Director (empId,name,sal,hra,share)
+
+                Hirarchial Inheretence
+
+                    One Super class extends into more than one Sub class.
+
+                                              | <---- Manager (empId,name,sal,hra)   
+                    Employee (empId,name,sal) |
+                                              | <---- ContractEmployee   (empId,name,sal,contractDuration)   
+
+                Multiple Inheretence
+
+                    More than one Super Type are extended into one sub Type.
+
+                    Java does not support multiple inhertence on classes, to avoid unnatural ambiguity.
+
+                Hybrid Inheretence
+                
+                    is a combination of multi-level and hirarchial
+
+                                              | <---- Manager (empId,name,sal,hra)  <--- Director (empId,name,sal,hra,share) 
+                    Employee (empId,name,sal) |
+                                              | <---- ContractEmployee   (empId,name,sal,contractDuration)   
+
+                
+                Points to remember
+
+                1. Each time an object for a sub class is allocated, the constructor from the super follwoed by the constructor
+                    from the sub class are invoekd.
+                
+                2. Java does not support multiple inheretence for classes.
+
+                3. A super class reference can refer to a sub class object.
+
+                        Pen p = new Marker();   //Narrowing, because p can access methods defiend in Pen only.
+
+                        Marker m = (Marker) p;  //Broadening 
+
+                        Pen p2 = new Pen();
+
+                        Marker m = (Marker) p2;  //Broadening not possible, trggers an exception called ClassCastException
+
+                4.  Dynamic Polymorphsism / Runttime Binding / Late Binding
+
+
+                                                          | <---- Manager (++hra, grossPay())  <--- Director (++share , grossPay() ) 
+                    Employee (empId,name,sal,grossPay() ) |
+                                                          | <---- ContractEmployee   (++contractDuration)   
+
+
+                        class EmployeeService {
+                            
+                            public double netPay(Employee emp){
+                                double tax = emp.grossPay()*0.10;
+                                return emp.grossPay() - tax;
+                            }
+
+                            /*
+                                emp.grossPay() will be triggered from which class - Employee / Manager / Director / ContractEmplopyee ??
+
+                                we can not say that here...!
+
+                                netPay is accepting an Employee class reference, which means when we invoke
+                                netPay method, we can pass an object Emplpoyee or an object of Manage or an Object of Direcotr or
+                                an object of ContractEmployee.
+
+                                When netPay(new Employee()) or netPay(new ContractEmployee()) , emp.groswPay() is invoked from Employee
+                                When netPay(new Manager()) , emp.grossPay() gets invoked from Manager
+                                When netPay(new Director()) , emp.grossPay() gets invoked from Director
+                            */
+
+                        }
+
+            Abstraction
+
+                is a machanisim to hide behavioural implementation.
+
+                
