@@ -618,4 +618,186 @@ Java SE 8
 
                 is a machanisim to hide behavioural implementation.
 
+                abstraction is primary achived through abstract functions, an abstract function is a function
+                that doesn't hold any implementation.
+
+                abstract functiosn can be held only by an abstract class or an interface.
+
+                abstract class GeometricShape {
+                    public abstract double area();
+                }
+
+                interface IGeometricShape {
+                    double area(); //byDefault methods in interfaces are public and abstract
+                }
+
+                an abstract class and an interface both can not have an object allocated.
+
+                both abstract classes and interfaces can have non-abstract methods along with abstract methods.
+
+                both abstract classes and interfaces must be derived into sub-classes, and thoe sub classes
+                must override all the abstract functions provided in abstract classes and interfaces.
+
+                GeometricShape s1 = new Rectangle(); //if Rectangle is a class extending the GeometricShape
+
+                IGeometricShape s2 = new Circle(); //if Circle is a sub-class of IGeometricShape
+
+                A sub-class can extend only one abstract class like any other classes. Multiple inheretence
+                is forbidden for abstract classes as well.
+
+                A sub-class can implement any number of interfaces. Multiple inheretence froim interfaces to
+                classes is possible.
+
+                Interfaces can not have fields unlike abstract classes.
+
+                In a case where we need abstract emthods and fields, we have no chocie but
+                to write a abstract class.
+
+                In a case where we need abstract emthod and no fields, then we can chsoose to write an interface 
+                rather than an absgttract class to take advantage of multiple inheretence.
+
+                abstract class Animal
+                                |<-- class FemaleAnimal ---->    Mother,Sibling
+                                |<-- class MaleAnimal   ---->    Father,Sibling
+
+                abstract class Bird
+                                |<-- class FemaleBird   ---->    Mother,Sibling
+                                |<-- class MaleBird     ---->    Father,Sibling
+
+                interface Father
+                    protect()
+                    earnFood()
+
+                interface Mother
+                    giveBirth()
+                    feed()
+
+                interface Sibling
+                    share()
+                    caring()
+                    playing()
+
+            Java Keywords to play along the OOP
+                
+                class           indicartes that the user defiend type is a class
+
+                interface       indicates that the user defined type is a interface
+
+                extends         used to create sub-classes from super-classes
+                                used to create sub-interfaces from super-interface
+
+                implements      used to create a sub-class from one or more super-interfaces
+
+                this            refers to the current object of a method
+
+                                    class Employee{
+                                        //....fields
+
+                                        public void getSalary(){
+                                            return this.salary;
+                                        }
+                                    }
+
+                                    emp1.getSalary()    //getSalary method has emp1 as current object    
+                                    emp2.getSalary()    //getSalary method has emp2 as current object
+
+                                'this' keyword can also be used to invoke a constructor from another constructor of the same class.
+
+                                    class Point2D {
+
+                                        private int x;
+                                        private int y;
+
+                                        //default construcotr - noarg constructor
+                                        public Point2D(){
+                                        this(5,5);
+                                        }
+
+                                        //paramatrized constructor
+                                        public Point2D(int x,int y){
+                                            this.x=x;
+                                            this.y=y;
+                                        }
+
+                                        //copy constructor
+                                        public Point2D(Point p){
+                                            this(p.x,p.y);
+                                        }
+
+                                        //getters and setters here....
+
+                                    }
+                
+                super           is used to invoke a super class constructor from a sub-class constructor                                  
+                                is also used to invoke a super class method from a sub-class overriden method.
+
+                                    class Employee{
+                                        private int empId;
+                                        private String fullName;
+                                        private double salary;
+                                        private double hra;
+
+                                        public Employee(){
+                                            //leaving empty intentionally
+                                        }
+
+                                        public Employee(int empId,String fullName,double salary,double hra){
+                                            this.empId=empId;
+                                            this.fullName=fullName;
+                                            this.salary=this.salary;
+                                            this.hra=hra;
+                                        }
+
+                                        //getters and setters are also defined
+
+                                        public double getGrossPay(){
+                                            return this.salary + this.hra;
+                                        }
+                                    }
+
+                                    class Manager extends Employee {
+                                        private double ta;
+
+                                        public Manager(){
+                                            //leaving empty intentionally
+                                        }
+
+                                        public Manager(int empId,String fullName,double salary,double hra,double ta){
+                                            super(empId,fullName,salary,hra);
+                                            this.ta=ta;
+                                        }
+
+                                        //getters and setters are also defined
+
+                                        public double getGrossPay(){
+                                            return super.getGrossPay() + this.ta;
+                                        }
+                                    }
+
+                abstract        when applied on a method, the method can not have implementation.
+                                when applied on a class, the class can not have object allocated.
+
+                final           when applied on a field or on a local variable, the variable turns to be a cosntant.
+                                when applied on a method, that method can not be overriden.
+                                when applied on a class, that class can not be inhereted.
+
+                static          static field
+                                    fields marked as static are called class variables
+                                    and non-static fields are called instance variables
+
+                                    class variables are allocated as single copy and shared by all the instacnes of the class
+                                    instance variables are allocated each object a sperate copy.
+
+                                    class variables if are also public, can be accessed through class name.
+
+                                static method
+                                    a static method is allowed access only other static methods or fields of that class.
+                                    a static method can not use 'this' keyword.
+
+                                    static methods if are also public, can be accessed through class name.
+
+                                static class?   Nested class vs Inner Class?
+
+                                static block?
+
                 
