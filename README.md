@@ -796,8 +796,113 @@ Java SE 8
 
                                     static methods if are also public, can be accessed through class name.
 
-                                static class?   Nested class vs Inner Class?
+                                static class -  Nested class vs Inner Class?
 
-                                static block?
+                                    class Outer {
+
+                                        class Inner {
+                                            // has access to all memebers of the outer class
+                                        }
+
+                                        static class Nested {
+                                            // has no access to any memebers of the outer class
+                                        }
+                                    }
+
+                                static block
+
+                                    class A {
+                                    
+                                        static {
+                                            //all static blocks in a class are treated as one block
+                                            //the code written in a static is executed only once, just before the class is accessed.
+                                            /* accessing a class means
+                                                    1. declaring a reference to a class  ---> A a;
+                                                    2. allocating an object to a class  ----> new A();
+                                                    3. accessing any static memebr of the class ---> A.staticMember
+                                                    4. Doing any of the above on the derived classes of this class.
+                                            */
+
+                                        }
+                                    
+                                        static {
+                                            //this block gets merged with the above static block
+                                        }
+                                    
+                                    }
+
+    JavaSE Packages                
+    --------------------------------------------------------------
+
+        java.lang                   Classes Related Fundamentals, Wrapper CLasses, String Manipulation, 
+                                    Exception Handling, Multi-Threading
+
+        java.time                   Date And Time API
+
+        java.util                   Geenrics, Collections, and a few utility classes like Scanner
+
+        java.util.regex             Regular Expressions
+
+        javq.util.functions         Lambda Expression and Functional Interfaces
+
+        javq.util.streams           Streams API 
+
+        java.io                     Input Output Streams
+
+        java.nio                    Non BlockingInput Output Streams
+
+        java.sql                    JDBC
+
+    java.lang  Classes Related Fundamentals
+    ----------------------------------------------------------
+
+        the 'lang' package is an implicit which means that this package is imported into all .java files.
+
+        java.lang.Class     represents all java classes. 
+                            Each java class is an object of java.lang.Class
+
+                            class Employee {
+
+                            }
+
+                            class Student {
+
+                            }
+
+                            Employee.class      is an object of java.lang.Class
+
+                            Student.class       is an object of java.lang.Class
+
+        java.lang.Object    represents all object in java. Every class in java is a sub-class of java.lang.Object.
+
+                            class Employee {
+
+                            }
+
+                            class Manager extends Employee {
+
+                            }
+
+                            class Director extends Manager {
+
+                            }
+
+                            Employee class is made to extend java.lang.Object at compile time.
+
+                            java.lang.Object
+                                        |<--- Employee
+                                                | <--- Manager
+                                                        | <-- Director
+        
+                            Methods from java.lang.Object
+
+                                int hashCode();             //is ment to return a unique numerical value of the magnitude of an object
+                                boolean equals(Object);     //is ment to check if two objects are equasl, obj1.equals(obj2)
+                                String toString();          //is ment to convert an object into a String
+
+                                It is important that these methods are overriden.
+
+
+
 
                 
