@@ -57,4 +57,9 @@ public class ComplexNumber {
 	public String toString() {
 		return "ComplexNumber [real=" + real + ", img=" + img + "]";
 	}
+	
+	public static ComplexNumber sum(ComplexNumber a,ComplexNumber b) {
+		return new ComplexNumber(a.real+b.real, a.img+b.img);
+	}
+	
 }

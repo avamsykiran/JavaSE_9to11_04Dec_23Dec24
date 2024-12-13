@@ -10,6 +10,7 @@ public class App02ClassAndObjectDemo {
 		ComplexNumber c2 = new ComplexNumber(5,16);		
 		ComplexNumber c3 = c2;
 		ComplexNumber c4 = new ComplexNumber(c2);
+		ComplexNumber c5 = ComplexNumber.sum(c2, c4);
 		
 		System.out.println(c1);
 		System.out.println(c1.hashCode());
@@ -22,6 +23,9 @@ public class App02ClassAndObjectDemo {
 		
 		System.out.println(c4);
 		System.out.println(c4.hashCode());
+		
+		System.out.println(c5);
+		System.out.println(c5.hashCode());
 				
 		System.out.println(c2.equals(c3));
 		System.out.println(c2.equals(c4));
