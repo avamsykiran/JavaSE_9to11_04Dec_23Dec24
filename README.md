@@ -902,7 +902,133 @@ Java SE 8
 
                                 It is important that these methods are overriden.
 
+        Wrapper Classes
 
+            Integer
+            Short
+            Long
+            Double
+            Float
+            Boolean
 
+            ..etc., for each primitive data type we have a matching class called the wrapper class that
+            is used to provide object status to a primitive variable when needed.
 
+            For an example, no primitive variable can hold null. Assuming a field called 'commission' for a Employee model
+            has to hold null to represent that an employee has no commission. 
+
+                class Employee{
+
+                    private double comm; //we can not store null in it
+                }
+
+                class Employee{
+
+                    private Double comm; // this can hold null
+                }
+
+            Boxing means assiging a primitive variable to its wrapper class object.
+            UnBoxing means assinging a wrapper class obkject to its matching primitive variable.
+
+            Auto-Boxing and Auto-Unboxing is a feature of JDK 1.8, where direct assignemnt will do the task,
+
+                int x = 45;
+                Integer iObj = x; //auto-boxing
+                int y = iobj; //auto-unboxing
                 
+        Working with Strings
+
+            java.lang.String
+
+                Every string litral is an object of String.
+
+                    String s = "Hello";
+                    String s1 = new String();
+                    String s2 = new String("any string");
+                    String s3 = new String(byteArray);
+
+                Every string object is an immutable object. An object whose valeu can not be modified / edited.
+                Every time a concatination happend on a string, it results in creating a new object.
+
+                The clases StringBuffer and StringBuilder are used to manupulate strings without the cost of
+                creating new string object each time.
+
+            java.lang.StringBuffer
+            java.lang.StringBuilder
+
+                StringBuffer is thread-safe and is hence lot slower than StringBuilder.
+
+        Exception Handling
+
+            An exception is a senario where the application is tend to break due to 
+            improper code construct or an invalid input.
+
+            java.lang.Throwable (i)
+                        |
+                        -------------
+                        |           |
+                        Error       Exception
+                                        |
+                                        RuntimeException
+
+            Any class that extends Exception is called a CHECKED EXCEPTION
+            Any class that extends RuntimeException is called a UNCHECKED EXCEPTION
+
+            CHECKED EXCEPTIONS if not handled, are detected by the compiler and is shown as compilation error.
+            UNCHECKED EXCEPTIONS if not handled, are not detected by the compiler.
+
+            UNCHECKED EXCEPTIONS must not be handled, but must be avoided using defensive programming.
+
+                ArrayIndexOutOfBoundsException is a sub-class of RuntimeException and hence it is UNCHECKED.
+
+                public String getElementAt(String array[],int index) {
+                    String result = null;
+                    
+                    if(index>=0 && index<array.length){ //we are avoiding ArrayIndexOutOfBoundsException
+                        result = array[index];
+                    }
+
+                    return result;
+                }
+
+            CHECKED EXCEPTIONS must be handled using try..catch, because we can not avoid them.
+
+                try{
+                    //statement that are expected to throw a CHECKED EXCEPTION
+                }catch(ExceptionType exceptionObj){
+                    //exception handling code..
+                }
+
+                //try with multiple catch
+                try{
+                    //statement that are expected to throw a CHECKED EXCEPTION
+                }catch(ExceptionType1 exceptionObj){
+                    //exception handling code..
+                }catch(ExceptionType2 exceptionObj){
+                    //exception handling code..
+                }catch(ExceptionType3 exceptionObj){
+                    //exception handling code..
+                }finally {
+                    //executes at any cost.
+                }
+                
+                //try with multi-catch
+                try{
+                    //statement that are expected to throw a CHECKED EXCEPTION
+                }catch(ExceptionType1 | ExceptionType2 | ExceptionType3 exceptionObj){
+                    //exception handling code..
+                }finally {
+                    //executes at any cost.
+                }
+
+                //try with resources
+                try (/*declare closable resources like streams or connections ..etc., */) {
+                    //statement that are expected to throw a CHECKED EXCEPTION
+                }catch(ExceptionType1 | ExceptionType2 | ExceptionType3 exceptionObj){
+                    //exception handling code..
+                }
+
+        throw   keyword is used to raise a (user defiend) exception.
+
+        throws  keyword is used to transfer an exception from a method to its caller method.
+
