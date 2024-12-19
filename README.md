@@ -1091,3 +1091,13 @@ Java SE 8
             |       |<- HashSet         uses a hash-table internally and its retrival has no predictable order
             |       |<- TreeSet         uses binary search tree, and its elements are retrived in sorted order
             |       |<- LinkedHashSet   uses a lionked list and its elements are retrived in entry order
+
+        Map (I)
+        |                       represents a group of key-value pairs
+        |                       keys can not be duplicates
+        |                       put(key,value),set(key,value),get(key),containsKey(key),keySet(),values(),size(),isEmpty()
+        |
+        |<- HashMap             its retrival has no predictable order
+        |<- TreeMap             its elements are retrived in sorted order
+        |<- LinkedHashMap       its elements are retrived in entry order
+        
