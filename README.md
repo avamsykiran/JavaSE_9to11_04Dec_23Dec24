@@ -1032,3 +1032,62 @@ Java SE 8
 
         throws  keyword is used to transfer an exception from a method to its caller method.
 
+    java.time
+    ---------------------------------------------------
+
+        Date and Time API
+                            Factory Methods     
+                            ---------------------------------------------------------
+        LocalDate           of(year,month,date), now(), parse(String) , parse(String,dateTimeFormatter)  
+        LocalTime           of(hour,min,sec), now(), parse(String) , parse(String,dateTimeFormatter) 
+        LocalDateTime       of(year,month,date,hour,min,sec), now(), parse(String) , parse(String,dateTimeFormatter) 
+        ZonedDateTime       of(year,month,date,hour,min,sec,zoneId), now(zoneId)
+        DateTimeFormatter   ofPattern(dateTiemPatternString)
+        Duration            between(start,end)
+        Period              between(start,end)
+
+        A method that is static and returns the object of the owned class is called a factory method.
+
+                            Instacne Methods     
+                            ---------------------------------------------------------
+        LocalDate           isBefore(localDate), isAfter(localDate), equsls(localDate), 
+                            getDate(), getMonth(), getYear(), format(dateTimeFormatter)
+        
+        LocalTime           isBefore(localTime), isAfter(localTime), equsls(localTime), 
+                            getHours(), getMinutes(), getSeconds(), format(dateTimeFormatter)
+        
+        LocalDateTime       isBefore(localDateTime), isAfter(localDateTime), equsls(localDateTime), 
+                            getHours(), getMinutes(), getSeconds(), getDate(), getMonth(), getYear(), format(dateTimeFormatter)
+
+    java.util utility classes
+    ----------------------------------------------------
+
+        Scanner
+        Random
+
+    java.util collections API
+    ----------------------------------------------------
+
+        collections are java representation of data structures.
+
+        Collection (I)
+            |               represents a group of homoginous objects.
+            |               add(ele), remove(ele), contains(ele), size(), isEmpty(), stream()               
+            |
+            |<- List (I)    
+            |               represents a Linear data structure.
+            |               supports positoning of elements called index, and that support randoem access
+            |               anu number of duplicte elements and nulls can be added
+            |
+            |       |<- ArrayList       is a growable non synchronized array, hence not thread safe but fast in performence
+            |       |<- Vector          is a growable synchronized array, hence thread-safe but slow in performence
+            |       |<- LinkedList      is an doublly linked list algorithm implementation
+            |       
+            |<- Set (I)     
+            |               represents a Non-Linear data structure.
+            |               does not support index or random access
+            |               no duplicates can be added and only one null can be added.
+            |
+            |       |<- HashSet         uses a hash-table internally and its retrival has no predictable order
+            |       |<- TreeSet         uses binary search tree, and its elements are retrived in sorted order
+            |       |<- LinkedHashSet   uses a lionked list and its elements are retrived in entry order
