@@ -1068,6 +1068,27 @@ Java SE 8
     java.util collections API
     ----------------------------------------------------
 
+
+        Generics    in java is an implementation of ADTs (Abstract Data Type). It allows an imginary
+                    data type while implementing an algorithm that is independent of data types.
+                    However, the imaginary data type can be concretized while invoking the algorithm.
+
+                        public class Swap<T>{
+                            public void doSwap(T a,T b) {
+                                T temp = a;
+                                a = b;
+                                b = temp;
+                            }
+                        }
+
+                        Swap<Integer> s1 = new Swap<>(); //int is not supported hence Integer.
+                        Swap<String> s2 = new Swap<>();
+                        Swap<Employee> s3 = new Swap<>();
+                        Swap<Double> s4 = new Swap<>(); //double is not supported hence Double.
+
+                    Generics do not support primitive data types, we need to use their wrapper class instead.
+
+
         collections are java representation of data structures.
 
         Collection (I)
@@ -1077,7 +1098,7 @@ Java SE 8
             |<- List (I)    
             |               represents a Linear data structure.
             |               supports positoning of elements called index, and that support randoem access
-            |               anu number of duplicte elements and nulls can be added
+            |               anu number of duplicate elements and nulls can be added
             |
             |       |<- ArrayList       is a growable non synchronized array, hence not thread safe but fast in performence
             |       |<- Vector          is a growable synchronized array, hence thread-safe but slow in performence
@@ -1101,3 +1122,290 @@ Java SE 8
         |<- TreeMap             its elements are retrived in sorted order
         |<- LinkedHashMap       its elements are retrived in entry order
         
+
+        interface java.lang.Comparable<T>
+                int compareTo(T obj);
+
+                class Student implements Comparable<Student> {
+                    
+                    ......
+
+                    @Overriden
+                    int compareTo(Student obj){
+                        /*
+                            return a positive int if this is greater than obj
+                            return a negative int if this is less than obj
+                            return a zero if this is equal to obj
+                        */
+                        return this.studentId>obj.studentId?1:(this.studentId<obj.studentId?-1:0);
+                    }
+                }
+
+                student1.compareTo(student2);
+
+        interface java.util.Comparator<T>
+                int compare(T obj1,T obj2)
+
+                class CompareStudentsOnFullName implements Comparator<Student> {
+                    int compare(Student obj1,Student obj2){
+                        return obj1.getFullName().compareTo(obj2.getFullName());
+                    }
+                }
+                
+                class CompareStudentsOnAge implements Comparator<Student> {
+                    int compare(Student obj1,Student obj2){
+                        double age1 = obj1.getAge();
+                        double age2 = obj2.getAge();
+                        return age1>age2?1:(age1<age2?-1:0);
+                    }
+                }
+
+        class java.util.Collections
+            This offers a lot of static methods for utility purposes like 
+                creating a list with single element
+                creating a set with single element 
+                sorting a list ...etc.,
+
+    java.util.function - Functional Interfaces and  Lambda Exporessions
+    ----------------------------------------------------------------------
+
+        This package has manfy buitl-in functional interfaces.
+
+        Any interface having one and only one abstract function is called a functional interface.
+
+        @FunctionalInterface annotation is a compiler check annotation to ensure that an interface ra=emains a functional interface.
+            
+            @FunctionalInterface
+            public interface LoanIntrest {
+                double getInterest(double p,double t,double r);
+            }
+
+        Java offers many buitlin fucntional interfaces in java.util.function package, and tehse interfaces have
+        names contains words like
+
+        supplier        that the method of that interface will not have any args but returns a value
+        consumer        that the method of that interface will have args but doesn't return a value
+        predicate       that the method of that interface always returns boolean
+        binary          that the method of that interface has two args
+
+        ...etc.,
+
+        Functional interfaces can be implemented using an inline implementation technique called Lambda Expression instead of
+        creating a separate sub-class.
+
+        A Lambda Expression is an expression where a list of parameters are mapped to a return value or a body of implementation.
+
+            (paramsList) -> returnValue;
+
+                BinaryOperator<Integer> doSum = (a,b) -> a+b;
+                LoanIntrest st = (p,t,r) -> (p*t*r) / 100;
+                
+            (paramsList) -> {
+                //implementation body
+            };
+
+                UnaryOperator<String> greetUser1 = userName -> "Hello " + userName;
+
+                UnaryOperator<String> greetUser2 = userName -> {
+                                                    String greeting = "";
+
+                                                    int h = LocalTime.getHours();
+
+                                                    if(h>=3 && h<=11) greeting = "Good Morning ";
+                                                    else if(h>11 && h<16) greeting = "Good Noon ";
+                                                    else greeting = "Good Evening ";
+
+                                                    return greeting + userName;
+                                                };
+                
+        A functional interface can refer to a method as well in case the signature of the abstract emthod of the
+        interface and the signature of the refered method match.
+
+            Consumer<Object> c = System.out::println ;
+
+    java.util.stream    Stream API
+    ----------------------------------------------
+
+        Streams API is java's approach to functional programming.
+
+        Functional Programming recommends each operation as a function chainable to complete a task.
+
+        Functional Programming is a good solution for task executed on a collection of elements repalcing
+        the nessacity of iterations (loops).
+
+        a Stream is a flow of elements frofm a collection of elements.
+
+        COLLECTION
+            |------ STREAM-------| 
+                -----an operation -------
+                    |------ STREAM-------| 
+                        -----another operation -------
+                            |------ STREAM-------| 
+                                -----another operation -------
+                                                            RECEIVED
+
+        java.util.stream.Stream is a class that represents this flow of elements, and a stream can be consuemd only once.
+
+            Stream s1 = list.stream();
+            Stream s2 = set.stream();
+            Stream s3 = Arrays.stream(array);
+            Stream s4 = Stream.of(ele1,ele2,ele3,ele4);
+
+            NOTE:
+                1. Terminal Streams can not be chained any more.
+                2. Intermidiate Streams can be chained.
+
+                    Chaining means using the output of an operation as input in another immidiate operation.
+                        stream.operation1().operation2().operation3().terminal();
+
+            Method of a Stream Object
+
+                forEach(consumer)       executes this consuemr on each element of a stream.
+                                        this operation will not return anything hence it is called a terminal stream.
+                
+                collect(Collector)      a Collector can collect elements of a stream into a Collection.
+                                        Collectors.toList()     collects elements of a stream into a list
+                                        Collectors.toSet()      collects elements of a stream into a set
+                                        Collectors.toMap()      collects elements of a stream into a map
+
+                                        this operation will not return a new stream but returns a Collection 
+                                        hence it is also called a terminal stream.               
+
+                map(unaryOperator)      A unaryOperator takes one arg and returns one value 
+                                        
+                                        The given unaryOperator is executed on each element of the source stream
+                                        and a new stream of all the results is returned.
+
+                                        As it returns a new stream, chaining is possible and hence it is called an
+                                        intermidiate stream.
+
+                reduce(binaryOperator)  A binaryOperator takes two params and returns a value of the same type.
+
+                                        reduce will execute the binaryOperator on the first pair of elements of
+                                        the stream adn the result is paired witht he third element and son on...
+                                        until all the elements are tapped. And returns the final element.
+                                        
+                                        This operation will not return a new stream but returns a value,
+                                        hence it is also called a terminal stream.               
+
+                                        BinaryOperator<Integer> sum = (n1,n2) -> n1+n2;
+                                        Optional<Integer> result = Stream.of(1,2,3,4,5).reduce(sum);
+                                                    // sum(sum(sum(sum(1,2),3),4),5)    ----> 15
+
+                filter(predicate)       A predicate returns a boolean
+
+                                        filter will execute the predicate on each element of the source stream
+                                        and returns a new stream of elements that got true for the predicate.
+
+                                        As it returns a new stream, chaining is possible and hence it is called an
+                                        intermidiate stream.
+
+    Multi-Threading
+    ---------------------------------------------
+
+        Multi-Threading allows us to execute more than one task parellally or asynchronously.
+
+        Each java application is already a thread. Inside that main thread, we can create child threads.
+
+        java.lang.Runnable
+         void run() |
+                    |
+                    |<- Thread
+                            Thread(Runnable task)
+                            Thread(String name)
+                            Thread(String name,Runnable task)
+
+                            void setName(String name);
+                            String getName();
+                            int getPriority();
+                            void setPriority(int);
+                            void start();
+                            static Thread currentThread();
+                            static void sleep(long durationInMilliSec);
+
+        By implementing Runnable interface or by extending Thread class, a new thread can be created.
+
+            new Thread(...)
+                |
+                ↓
+                INITIATION
+                |
+                | start()
+                ↓
+                READY...-----------Once the CPU is idle and others resource idle-----------→|
+                    ↑                                                                       |
+                    |                                                                       ↓
+                    |←-------OnWakeUp-------- PAUSED... ←----sleep(long)--------------- EXECUTION (run()) ...
+                                                                                            |
+                                                                                            | taskCompletes
+                                                                                            ↓
+                                                                                        TERMINATED
+
+
+        Anmy active program is a process. For every process a CPU will assign 
+            a few registries
+            a programCounter 
+            a heap memory               
+                a call stack
+                variables and objects
+
+        No two processes can share the registeries or the programCounter or the heap.
+
+        In case of multi-thread, each thread is a seperate process but the threads in the same
+        program can share the heap memory. A thread can have access to the variables and objects in
+        the heap memory of another thread. This means that a thread can write into a piece of memory and another
+        thread can read it.
+
+    Java Database Connectivity (JDBC)
+    ------------------------------------------------------------------
+
+        JDBC is a database independent specification provided to enable
+        database connectivity for java application in the package java.sql
+
+        A specification is a set of interfaces with abstract mehtods. These methods are to be implemented
+        by a third party implementation provider.
+
+        The JDBC specifications are implemented by the respective database drivers.
+
+        SQL Server  <-----> Ms Jet Driver
+        My SQL      <-----> MySQL ConnectorJ Driver   <-------> JDBC <------> Java App
+        Oracle      <-----> Oracle Thin Driver
+
+        java.sql.DriverManager
+            Connection getConnection(dbConnectionString,dbUserId,dbPwd);
+
+        java.sql.Connection
+            Statement createStatement();
+            PreparedStatement prepareStatement(String qry);
+            CallableStatement prepareCall(String functionOrProcedureCall);
+
+        java.sql.PreparedStatement
+            boolean execute();              //is used to execute DDL qrys liek create / drop /alter
+                                            //returns true on sucessful execution and returns false on failure
+
+            int executeUpdate();            //is used to execute insert / update/ delete qrys
+                                            //and return the number of records affected.
+
+            ResultSet executeQuery();       //is used to execute select qry
+                                            //returns an object of ResultSet that contains the records retrived.
+
+            void setInt(int,int);
+            void setDouble(int,double);
+            void setString(int,String);
+            void setDate(int,Date);
+            void setFloat(int,float);
+            ...etc.,                        // these methods are used to provide value to query parameters
+                                            // the first argument is the number of the query parameter
+                                            // the second argument is the value of the query parameter
+
+        java.sql.ResultSet
+            boolean next();
+
+            int getInt(int);
+            double getInt(int);  
+            String getString(int);
+            Date getDate(int);
+            ...etc.,                        // these methods are sued to retrive value of a specific column of the current row
+                                            // the argument is the column number.
+
+            
